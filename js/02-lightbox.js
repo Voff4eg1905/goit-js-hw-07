@@ -22,7 +22,6 @@ divWrapper.innerHTML = galleryList;
         if (event.target.nodeName !== "IMG") {
         return;
     }
-    console.log(event.target.alt);
     let lightbox = new SimpleLightbox('.gallery a', { captionSelector: 'img', captionType: "attr",  captionsData: "alt", captionDelay: 250});
 
  }
