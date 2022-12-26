@@ -32,30 +32,31 @@ function onGalleryItemClick(event) {
   }
   const shownPicture = showPicture(event.target.dataset.source);
 
-  
   if (shownPicture.visible()) {
     document.addEventListener("keydown", onEscapePress);
     console.log("added");
   }
 
+  //* Знаю що цей метод потрібно винести за межі "onGalleryItemClick" але не знаю як тоді отримати доступ до "shownPicture".
 
-//* Знаю що цей метод потрібно винести за межі "onGalleryItemClick" але не знаю як тоді отримати доступ до "shownPicture". 
-//*І ще проблема що коли закриваю не через ESC не знімається івент ліснер. Не знаю як виправити 
-    function onEscapePress(event) {
-      if (event.code === "Escape") {
-        shownPicture.close();  //!Не знаю як передати цій функції showPicture якщо винести її за межі методу "onGalleryItemClick"
-        document.removeEventListener("keydown", onEscapePress);
-        console.log("removed");
-      }
+  function onEscapePress(event) {
+    if (event.code === "Escape") {
+      shownPicture.close(); //!Не знаю як передати цій функції showPicture якщо винести її за межі методу "onGalleryItemClick"
     }
-   
   }
-
   function showPicture(source) {
-    const openedPicture = basicLightbox.create(`
-	<img src = "${source}">
-	`);
+    const openedPicture = basicLightbox.create(
+      `
+    <img src = "${source}">
+    `,
+      {
+        onClose: (instance) => {
+          document.removeEventListener("keydown", onEscapePress);
+          console.log("removed");
+        },
+      }
+    );
     openedPicture.show();
     return openedPicture;
   }
-
+}
