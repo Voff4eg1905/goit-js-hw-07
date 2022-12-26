@@ -37,13 +37,7 @@ function onGalleryItemClick(event) {
     console.log("added");
   }
 
-  //* Знаю що цей метод потрібно винести за межі "onGalleryItemClick" але не знаю як тоді отримати доступ до "shownPicture".
 
-  function onEscapePress(event) {
-    if (event.code === "Escape") {
-      shownPicture.close(); //!Не знаю як передати цій функції showPicture якщо винести її за межі методу "onGalleryItemClick"
-    }
-  }
   function showPicture(source) {
     const openedPicture = basicLightbox.create(
       `
@@ -51,7 +45,7 @@ function onGalleryItemClick(event) {
     `,
       {
         onClose: (instance) => {
-          document.removeEventListener("keydown", onEscapePress);
+          document.removeEventListener("keydown", onEscapePress); //*якщо винесу не буде доступу до eventListener
           console.log("removed");
         },
       }
@@ -59,4 +53,14 @@ function onGalleryItemClick(event) {
     openedPicture.show();
     return openedPicture;
   }
+  
+  //* Знаю що цей метод потрібно винести за межі "onGalleryItemClick" але не знаю як тоді отримати доступ до "shownPicture".
+
+  function onEscapePress(event) {
+    if (event.code === "Escape") {
+      shownPicture.close(); //!Не знаю як передати цій функції showPicture якщо винести її за межі методу "onGalleryItemClick"
+    }
+  }
+
+  
 }
