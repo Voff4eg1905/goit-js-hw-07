@@ -15,15 +15,15 @@ const createCard = ({ preview, original, description }) => {
   const divWrapper = document.querySelector(".gallery");
 divWrapper.innerHTML = galleryList;
   
-  divWrapper.addEventListener("click", onGalleryItemClick);
+  // divWrapper.addEventListener("click", onGalleryItemClick);
 
-  function onGalleryItemClick (event) {
-    event.preventDefault();
-        if (event.target.nodeName !== "IMG") {
-        return;
-    }
+  // function onGalleryItemClick (event) {
+  //   event.preventDefault();
+  //       if (event.target.nodeName !== "IMG") {
+  //       return;
+  //   }
     let lightbox = new SimpleLightbox('.gallery a', { captionSelector: 'img', captionType: "attr",  captionsData: "alt", captionDelay: 250});
 
- }
+//  }
 
  
